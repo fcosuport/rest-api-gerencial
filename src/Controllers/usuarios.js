@@ -12,7 +12,8 @@ const getAll = async (req, res) => {
 
 const getId = async (req, res) => {
     try {
-        const usuario = await Usuarios.findOne({ where: req.params });
+        //const usuario = await Usuarios.findOne({ where: req.params });
+        const usuario = await Usuarios.findByPk(req.params.cdusuario);
         return res.json(usuario)
     } catch (err) {
         return res.status(400).json({ error: err.message })

@@ -12,8 +12,8 @@ const getAll = async (req, res) => {
 
 const getId = async (req, res) => {
     try {
-        //console.log(req.params.cdproduto)
-        const produto = await Produtos.findOne({ where: req.params });
+        //const produto = await Produtos.findOne({ where: req.params });
+        const produto = await Produtos.findByPk(req.params.cdproduto);
         return res.json(produto)
     } catch (err) {
         return res.status(400).json({ error: err.message })

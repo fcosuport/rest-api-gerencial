@@ -12,7 +12,8 @@ const getAll = async (req, res) => {
 
 const getId = async (req, res) => {
     try {
-        const cliente = await Clientes.findOne({ where: req.params });
+        //const cliente = await Clientes.findOne({ where: req.params });
+        const cliente = await Clientes.findByPk(req.params.cdcliente);
         return res.json(cliente)
     } catch (err) {
         return res.status(400).json({ error: err.message })
