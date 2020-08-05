@@ -16,14 +16,15 @@ const clientes = require('./Routes/clientes')
 const produtos = require('./Routes/produtos')
 const usuarios = require('./Routes/usuarios')
 const licenca = require('./Routes/licenca');
-const contasreceber = require('./Routes/contasreceber');
-
+const contasreceber = require('./Routes/contasreceber')
+const liberacoes = require('./Routes/liberacoes')
 
 app.use(clientes)
 app.use(produtos)
 app.use(usuarios)
 app.use(licenca)
 app.use(contasreceber)
+app.use(liberacoes)
 
 
 app.get("/", (req, res) => {
