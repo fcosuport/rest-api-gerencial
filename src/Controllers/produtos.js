@@ -3,8 +3,15 @@ const Produtos = require('../Models/produtos')
 
 const getAll = async (req, res) => {
     try {
-        const produtos = await Produtos.findAll()
-        return res.json(produtos)
+
+        if (!!req.query.inativo) {
+            const produtos = await Produtos.findAll({ where: req.query })
+            return res.json(produtos)
+        } else {
+            const produtos = await Produtos.findAll()
+            return res.json(produtos)
+        }
+
     } catch (err) {
         return res.status(400).json({ error: err.message })
     }

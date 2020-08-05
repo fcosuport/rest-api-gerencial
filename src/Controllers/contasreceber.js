@@ -12,12 +12,12 @@ const getContasReceber = async (req, res) => {
             ' from contasreceber t,clientes c where t.cdcliente=c.cdcliente'
 
         if (!!req.query.situacao) {
-            Situacao = JSON.stringify(req.query.situacao)
+            const Situacao = JSON.stringify(req.query.situacao)
             scriptcontasreceber = scriptcontasreceber + ' and t.situacao=' + Situacao
         }
 
         if (!!req.query.cdrevenda) {
-            Revenda = req.query.cdrevenda
+            const Revenda = req.query.cdrevenda
             scriptcontasreceber = scriptcontasreceber + ' and t.cdrevenda=' + Revenda
         }
 
