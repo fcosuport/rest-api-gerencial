@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 //Rotas
+const login = require('./Routes/login')
 const clientes = require('./Routes/clientes')
 const produtos = require('./Routes/produtos')
 const usuarios = require('./Routes/usuarios')
@@ -19,6 +20,7 @@ const licenca = require('./Routes/licenca');
 const contasreceber = require('./Routes/contasreceber')
 const liberacoes = require('./Routes/liberacoes')
 
+app.use(login)
 app.use(clientes)
 app.use(produtos)
 app.use(usuarios)
