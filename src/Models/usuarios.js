@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize')
 const sequelize = require('../Database/connection')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const usuarios = require('../Controllers/usuarios');
 
 const Usuarios = sequelize.define('usuarios', {
     cdusuario: {
@@ -16,10 +17,7 @@ const Usuarios = sequelize.define('usuarios', {
     hooks: {
         beforeCreate: (usuarios) => {
             usuarios.senha = bcrypt.hashSync(usuarios.senha);
-        },
-        beforeUpdate: (usuarios) => {
-            usuarios.senha = bcrypt.hashSync(usuarios.senha);
-        },
+        }
     },
 })
 
