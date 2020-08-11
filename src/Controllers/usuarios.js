@@ -33,7 +33,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        await Usuarios.update(req.body, { where: req.params });
+        await Usuarios.update(req.body, { where: req.params, individualHooks: true })
 
         return res.json({ message: 'Usuario Atualizado com Sucesso!!' });
     } catch (err) {
