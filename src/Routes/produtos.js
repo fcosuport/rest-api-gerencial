@@ -2,6 +2,10 @@ const express = require('express')
 const routes = express.Router()
 const Produtos = require('../Controllers/produtos')
 
+const authMiddleware = require('../middlewares/auth')
+
+routes.use(authMiddleware)
+
 
 routes.get('/produtos', Produtos.getAll)
 

@@ -10,7 +10,6 @@ require('./Database/connection');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const authMiddleware = require('./middlewares/auth');
 
 //Rotas
 const login = require('./Routes/login')
@@ -21,7 +20,6 @@ const licenca = require('./Routes/licenca');
 const contasreceber = require('./Routes/contasreceber')
 const liberacoes = require('./Routes/liberacoes')
 
-app.use(authMiddleware)
 
 app.use(login)
 app.use(clientes)

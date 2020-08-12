@@ -2,6 +2,10 @@ const express = require('express')
 const routes = express.Router()
 const Clientes = require('../Controllers/clientes')
 
+const authMiddleware = require('../middlewares/auth')
+
+routes.use(authMiddleware)
+
 
 routes.get('/clientes', Clientes.getAll)
 
