@@ -33,7 +33,6 @@ const login = async (req, res) => {
             cdusuario: usuario.cdusuario
         });
 
-        //return res.json(usuario,token)
         return res.status(200).send({
             status: 1,
             message: "Usuário logado com sucesso!",
