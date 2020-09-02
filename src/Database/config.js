@@ -9,4 +9,5 @@ module.exports = {
         timestamps: false,
         underscored: false,
     },
+    timezone: "-04:00"
 };

@@ -43,9 +43,10 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        await Usuarios.destroy({ where: req.params });
+        //await Usuarios.destroy({ where: req.params });
 
-        return res.json({ message: 'Usuario Excluido com Sucesso!!' });
+        //return res.json({ message: 'Usuario Excluido com Sucesso!!' });
+        return res.json({ message: 'Função não Habilitada!!' });
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }

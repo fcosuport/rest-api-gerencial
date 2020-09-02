@@ -2,13 +2,16 @@ const express = require('express')
 const app = express()
 const bodyParser = require("body-parser")
 const dotenv = require('dotenv').config()
+const cors = require('cors')
 
 const PORT = process.env.PORT
 
-require('./Database/connection');
+require('./Database/connection')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(cors())
 
 
 //Rotas

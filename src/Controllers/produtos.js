@@ -50,9 +50,10 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        await Produtos.destroy({ where: req.params });
+        //await Produtos.destroy({ where: req.params });
 
-        return res.json({ message: 'Produto Excluido com Sucesso!!' });
+        //return res.json({ message: 'Produto Excluido com Sucesso!!' });
+        return res.json({ message: 'Função não Habilitada!!' });
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }
