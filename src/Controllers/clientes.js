@@ -36,6 +36,8 @@ const getAll = async (req, res) => {
             scriptclientes = scriptclientes + ' and nome like ' + nome
         }
 
+        scriptclientes = scriptclientes + ' order by cdcliente desc'
+
         clientes = await sequelize.
             query(scriptclientes, { type: QueryTypes.SELECT })
         return res.json(clientes)
@@ -56,6 +58,16 @@ const getId = async (req, res) => {
     try {
         //const cliente = await Clientes.findOne({ where: req.params });
         const cliente = await Clientes.findByPk(req.params.cdcliente);
+        return res.json(cliente)
+    } catch (err) {
+        return res.status(400).json({ error: err.message })
+    }
+}
+
+const getCnpj = async (req, res) => {
+    try {
+        console.log(req.params)
+        const cliente = await Clientes.findOne({ where: req.params });
         return res.json(cliente)
     } catch (err) {
         return res.status(400).json({ error: err.message })
@@ -96,5 +108,5 @@ const remove = async (req, res) => {
 
 
 module.exports = {
-    getAll, getId, create, update, remove
+    getAll, getId, getCnpj, create, update, remove
 }

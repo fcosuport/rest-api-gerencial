@@ -22,6 +22,8 @@ const usuarios = require('./Routes/usuarios')
 const licenca = require('./Routes/licenca');
 const contasreceber = require('./Routes/contasreceber')
 const liberacoes = require('./Routes/liberacoes')
+const cidades = require('./Routes/cidades')
+const estados = require('./Routes/estados')
 
 
 app.use(login)
@@ -31,6 +33,9 @@ app.use(usuarios)
 app.use(licenca)
 app.use(contasreceber)
 app.use(liberacoes)
+app.use(cidades)
+app.use(estados)
+
 
 
 app.get("/", (req, res) => {

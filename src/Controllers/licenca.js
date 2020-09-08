@@ -20,16 +20,14 @@ const postLicenca = async (req, res) => {
         const clientes = await Clientes.findByPk(cdclienteReq)
 
         if (clientes.cnpj_cpf != chave.substring(16)) {
-            return res.status(400).
-                json({ message: 'CNPJ da chave diferente do Cliente' })
+            return res.json({ status: '100', message: 'CNPJ da chave diferente do Cliente' })
 
         }
 
         const produtos = await Produtos.findByPk(cdprodutoReq)
 
         if (produtos.idaplicacao != chave.substring(8, 16)) {
-            return res.status(400)
-                .json({ message: 'Módulo da chave difere do informado' })
+            return res.json({ status: '100', message: 'Módulo da chave difere do informado' })
         }
 
         if (tipoReq == 1) {
@@ -99,7 +97,7 @@ const postLicenca = async (req, res) => {
         }
 
 
-        return res.json({ message: chavelicenca })
+        return res.json({ status: '200', message: chavelicenca })
 
     } catch (err) {
         return res.status(400).json({ error: err.message });

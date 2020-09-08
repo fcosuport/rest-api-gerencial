@@ -1,14 +1,16 @@
 const Produtos = require('../Models/produtos')
+const sequelize = require('../Database/connection')
+const { QueryTypes } = require('sequelize')
 
 
 const getAll = async (req, res) => {
     try {
 
         if (!!req.query.inativo) {
-            const produtos = await Produtos.findAll({ where: req.query })
+            const produtos = await Produtos.findAll({ where: req.query, order: [['cdproduto', 'DESC']] })
             return res.json(produtos)
         } else {
-            const produtos = await Produtos.findAll()
+            const produtos = await Produtos.findAll({ order: [['cdproduto', 'DESC']] })
             return res.json(produtos)
         }
 
@@ -30,6 +32,7 @@ const getId = async (req, res) => {
 
 const create = async (req, res) => {
     try {
+        console.log(req.body)
         await Produtos.create(req.body);
 
         return res.json({ message: 'Produto Cadastrado com Sucesso!!' });
@@ -50,10 +53,14 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-        //await Produtos.destroy({ where: req.params });
-
-        //return res.json({ message: 'Produto Excluido com Sucesso!!' });
-        return res.json({ message: 'Função não Habilitada!!' });
+        script = 'select* from liberacoes where cdproduto=' + req.params.cdproduto
+        resultado = await sequelize.query(script, { type: QueryTypes.SELECT })
+        if (resultado == '') {
+            await Produtos.destroy({ where: req.params });
+            return res.json({ status: '200', message: 'Produto Excluido com Sucesso!!' });
+        } else {
+            return res.json({ status: '100', message: 'Produto não pode ser Excluido!! Existem Registro Vinculado ao Mesmo' });
+        }
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }

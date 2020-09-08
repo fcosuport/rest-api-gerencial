@@ -11,6 +11,8 @@ routes.get('/clientes', Clientes.getAll)
 
 routes.get('/clientes/:cdcliente', Clientes.getId)
 
+routes.get('/clientes/cnpj_cpf/:cnpj_cpf', Clientes.getCnpj)
+
 routes.post('/clientes', Clientes.create)
 
 routes.put('/clientes/:cdcliente', Clientes.update)
