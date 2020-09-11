@@ -9,6 +9,8 @@ routes.use(authMiddleware)
 
 routes.get('/contasreceber', ContasReceber.getContasReceber)
 
+routes.post('/contasreceber/quitar', ContasReceber.postQuitar)
+
 
 
 module.exports = routes

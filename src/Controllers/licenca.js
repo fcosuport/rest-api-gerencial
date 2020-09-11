@@ -40,13 +40,13 @@ const postLicenca = async (req, res) => {
         const cnpj = chave.substring(16)
         */
 
+        const datavencimento = new Date();
         const dataAtual = new Date();
         const dia = dataAtual.getDate()
         const mes = dataAtual.getMonth() + 1
         const ano = dataAtual.getFullYear()
         const somadata = (dia + mes + ano)
         const diminuidata = (ano - mes - dia)
-
 
         novoidaplic = ((parseInt(produtos.idaplicacao) +
             parseInt(somadata)) +
@@ -82,7 +82,8 @@ const postLicenca = async (req, res) => {
             await ContasReceber.create({
                 cdcliente: clientes.cdcliente,
                 emissao: dataAtual,
-                vencimento: dataAtual + 5,
+                // vencimento: dataAtual + 5,
+                vencimento: datavencimento.setDate(datavencimento.getDate() + 5),
                 total: produtos.valor,
                 pago: 0,
                 cdrevenda: 1,

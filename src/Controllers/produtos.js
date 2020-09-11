@@ -32,7 +32,6 @@ const getId = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        console.log(req.body)
         await Produtos.create(req.body);
 
         return res.json({ message: 'Produto Cadastrado com Sucesso!!' });
