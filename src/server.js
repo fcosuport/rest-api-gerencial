@@ -15,6 +15,7 @@ app.use(cors())
 
 
 //Rotas
+const praticosistemas = require('./Routes/praticosistemas')
 const login = require('./Routes/login')
 const clientes = require('./Routes/clientes')
 const produtos = require('./Routes/produtos')
@@ -26,6 +27,7 @@ const cidades = require('./Routes/cidades')
 const estados = require('./Routes/estados')
 
 
+app.use(praticosistemas)
 app.use(login)
 app.use(clientes)
 app.use(produtos)

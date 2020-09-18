@@ -86,8 +86,28 @@ const getId = async (req, res) => {
 
 const getCnpj = async (req, res) => {
     try {
-        console.log(req.params)
         const cliente = await Clientes.findOne({ where: req.params });
+        return res.json(cliente)
+    } catch (err) {
+        return res.status(400).json({ error: err.message })
+    }
+}
+
+const getBuscarcdCliente = async (req, res) => {
+    try {
+        const cnpj = JSON.stringify(req.params.cnpj)
+        script = 'select cdcliente from clientes where cnpj_cpf=' + cnpj
+        cdcodigo = await sequelize.query(script, { type: QueryTypes.SELECT })
+        return res.json(cdcodigo)
+    } catch (err) {
+        return res.status(400).json({ error: err.message })
+    }
+}
+
+const getVerificarLicenca = async (req, res) => {
+    try {
+        script = 'select cnpj_cpf,bloquearsistema from clientes where cdcliente=' + req.params.cdcliente
+        cliente = await sequelize.query(script, { type: QueryTypes.SELECT })
         return res.json(cliente)
     } catch (err) {
         return res.status(400).json({ error: err.message })
@@ -130,5 +150,5 @@ const remove = async (req, res) => {
 
 
 module.exports = {
-    getAll, getId, getCnpj, create, update, remove
+    getAll, getId, getCnpj, getBuscarcdCliente, getVerificarLicenca, create, update, remove
 }
