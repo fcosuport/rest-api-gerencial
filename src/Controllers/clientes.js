@@ -24,6 +24,18 @@ const getAll = async (req, res) => {
             scripttotalmanutencao = scripttotalmanutencao + ' and manutencao=' + manutencao
         }
 
+        if (!!req.query.bloquearsistema) {
+            const bloquearsistema = JSON.stringify(req.query.bloquearsistema)
+            scriptclientes = scriptclientes + ' and bloquearsistema=' + bloquearsistema
+            scripttotalmanutencao = scripttotalmanutencao + ' and bloquearsistema=' + bloquearsistema
+        }
+
+        if (!!req.query.inativo) {
+            const inativo = JSON.stringify(req.query.inativo)
+            scriptclientes = scriptclientes + ' and inativo=' + inativo
+            scripttotalmanutencao = scripttotalmanutencao + ' and inativo=' + inativo
+        }
+
         if (!!req.query.cnpj) {
             const cnpj = JSON.stringify(req.query.cnpj)
             scriptclientes = scriptclientes + ' and cnpj_cpf=' + cnpj
