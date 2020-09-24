@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-
 const secret = process.env.SECRET
 
 module.exports = (req, res, next) => {
@@ -8,6 +7,7 @@ module.exports = (req, res, next) => {
     if (!authHeader) {
         return res.status(401).send({ error: 'Nenhum Token Enviado!!' })
     }
+
     const parts = authHeader.split(' ')
 
     if (!parts.length == 2) {
@@ -23,7 +23,8 @@ module.exports = (req, res, next) => {
     jwt.verify(token, secret, (err, decoded) => {
         if (err) return res.status(401).send({ error: 'Token invalido!!' })
 
-        UserLogado = decoded.cdusuario
+        cdUsuario = decoded.cdusuario
+        req.UserLogado = cdUsuario
 
         return next();
     });

@@ -129,7 +129,9 @@ const getVerificarLicenca = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        await Clientes.create(req.body);
+        const novoClient = req.body
+        const Cliente = {...novoClient, revenda:req.UserLogado}
+        await Clientes.create(Cliente);
 
         return res.json({ message: 'Cliente Cadastrado com Sucesso!!' });
     } catch (err) {
@@ -139,7 +141,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        console.log(req.body);
+
         await Clientes.update(req.body, { where: req.params });
 
         return res.json({ message: 'Cliente Atualizado com Sucesso!!' });

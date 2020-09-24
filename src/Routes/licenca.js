@@ -4,6 +4,7 @@ const Licenca = require('../Controllers/licenca')
 
 const authMiddleware = require('../middlewares/auth')
 
+
 routes.use(authMiddleware)
 
 

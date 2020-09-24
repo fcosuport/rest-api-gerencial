@@ -68,7 +68,7 @@ const postLicenca = async (req, res) => {
         try {
             await Liberacoes.create({
                 cdcliente: cdclienteReq,
-                cdusuario: 1,
+                cdusuario: req.UserLogado,
                 serialhd: hd,
                 cdproduto: produtos.cdproduto,
                 chaveliberacao: chavelicenca,
@@ -86,7 +86,7 @@ const postLicenca = async (req, res) => {
                 vencimento: datavencimento.setDate(datavencimento.getDate() + 5),
                 total: produtos.valor,
                 pago: 0,
-                cdrevenda: 1,
+                cdrevenda: req.UserLogado,
                 cdpagamento: 2,
                 parcelas: 1,
                 situacao: 'ABERTO',

@@ -6,7 +6,6 @@ const authMiddleware = require('../middlewares/auth')
 
 routes.use(authMiddleware)
 
-
 routes.get('/cidades', Cidades.getAll)
 
 
